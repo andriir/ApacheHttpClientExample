@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration PUBLIC "-//LOGGER"
+        "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration debug="true">
+
+    <appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p %d %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="FileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="target/surefire-reports/logs/ui-tests.log"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <param name="Append" value="true"/>
+        <!--<param name="Threshold" value="DEBUG"/>-->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p %d %m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="com.andriir">
+        <level value="DEBUG"/>
+        <appender-ref ref="ConsoleAppender"/>
+        <appender-ref ref="FileAppender"/>
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="ERROR"/>
+    </logger>
+
+    <logger name="org.hibernate">
+        <level value="ERROR"/>
+    </logger>
+
+    <logger name="net.sf.jasperreports">
+        <level value="ERROR"/>
+    </logger>
+
+    <logger name="org.apache.commons">
+        <level value="ERROR"/>
+    </logger>
+
+    <logger name="org.springframework.jdbc.core.JdbcTemplate">
+        <level value="ERROR"/>
+    </logger>
+
+    <root>
+        <level value="WARN"/>
+        <appender-ref ref="ConsoleAppender"/>
+    </root>
+</log4j:configuration>
